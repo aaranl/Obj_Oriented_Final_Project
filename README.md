@@ -1,8 +1,8 @@
 # MTG Deck Analyzer
 
-A Java application for analyzing Magic: The Gathering Commander/EDH decks.
+This is a program for analyzing Magic the Gathering Commander decks to give a mana curve analysis and a CMC distribution analysis. 
 
-## Prerequisites
+## Requirements
 
 - Java Development Kit (JDK) 17 or higher
 - Maven 3.6 or higher

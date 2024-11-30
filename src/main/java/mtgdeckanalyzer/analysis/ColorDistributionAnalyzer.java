@@ -50,10 +50,7 @@ public class ColorDistributionAnalyzer {
         
         for (String color : COLORS) {
             if (colorDistribution.get(color) > 0) {
-                sb.append(colorNames.get(color))
-                  .append(": ")
-                  .append(colorDistribution.get(color))
-                  .append("%\n");
+                sb.append(colorNames.get(color)).append(": ").append(colorDistribution.get(color)).append("%\n");
             }
         }
         

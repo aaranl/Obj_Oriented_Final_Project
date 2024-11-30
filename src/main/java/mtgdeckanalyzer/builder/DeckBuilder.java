@@ -28,7 +28,7 @@ public class DeckBuilder {
         
         Deck deck = new Deck(deckName, commander);
         Map<String, Integer> cardCounts = deckParser.parseDeck(deckList);
-        cardCounts.remove(commanderName); // Remove commander from parsed list
+        cardCounts.remove(commanderName);
         
         for (Map.Entry<String, Integer> entry : cardCounts.entrySet()) {
             String cardName = entry.getKey();

@@ -68,11 +68,7 @@ public class MainUI extends JFrame {
             
             Deck deck = deckBuilder.buildDeck("New Deck", commanderName, deckList);
             
-            JOptionPane.showMessageDialog(this, 
-                "Deck built successfully!\nCommander: " + deck.getCommander().getName() + 
-                "\nTotal cards: " + deck.getCards().size(), 
-                "Success", 
-                JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Deck built successfully!\nCommander: " + deck.getCommander().getName() + "\nTotal cards: " + deck.getCards().size(), "Success", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,21 +108,13 @@ public class MainUI extends JFrame {
                 displayText.append("Cards: ").append(deck.getCards().size()).append("\n");
                 displayText.append("\nCard List:\n");
                 deck.getCards().forEach(card -> 
-                    displayText.append("- ")
-                             .append(card.getName())
-                             .append(" (")
-                             .append(card.getManaCost())
-                             .append(") [")
-                             .append(card.getType().replace("—", "-"))
-                             .append("]\n")
-                );
+                    displayText.append("- ").append(card.getName()).append(" (").append(card.getManaCost()).append(") [").append(card.getType().replace("—", "-")).append("]\n"));
                 ManaCurveAnalyzer analyzer = new ManaCurveAnalyzer();
                 displayText.append("\n=========Mana Curve Analysis=========n");
                 displayText.append("Mana Curve:\n").append(analyzer.getManaCurveString(analyzer.analyzeDeck(deck)));
                 ColorDistributionAnalyzer colorAnalyzer = new ColorDistributionAnalyzer();
                 displayText.append("\n=========Color Distribution Analysis=========n");
-                displayText.append("Color Distribution:\n")
-                        .append(colorAnalyzer.getColorDistributionString(colorAnalyzer.analyzeColorDistribution(deck)));
+                displayText.append("Color Distribution:\n").append(colorAnalyzer.getColorDistributionString(colorAnalyzer.analyzeColorDistribution(deck)));
                 displayText.append("\n=================\n\n");
             }
 

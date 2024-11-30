@@ -1,41 +1,29 @@
 package mtgdeckanalyzer.storage;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import mtgdeckanalyzer.exceptions.StorageException;
 import mtgdeckanalyzer.model.Deck;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StorageManager {
-    private static final String STORAGE_DIR = "saved_decks";
-    private static final String DECKS_FILE = STORAGE_DIR + "/decks.json";
+    private static final String DECKS_FILE = "saved_decks.json";
     private final Gson gson;
 
     public StorageManager() {
-        gson = new GsonBuilder().setPrettyPrinting().create();
-        createStorageDirectory();
-    }
-
-    private void createStorageDirectory() {
-        File directory = new File(STORAGE_DIR);
-        if (!directory.exists()) {
-            directory.mkdirs();
-        }
+        gson = new Gson();
     }
 
     public void saveDeck(Deck deck) throws StorageException {
-        List<Deck> existingDecks = loadDecks();
-        existingDecks.add(deck);
-
-        try (Writer writer = new FileWriter(DECKS_FILE)) {
-            gson.toJson(existingDecks, writer);
+        List<Deck> decks = loadDecks();
+        decks.add(deck);
+        
+        try (FileWriter writer = new FileWriter(DECKS_FILE)) {
+            gson.toJson(decks, writer);
         } catch (IOException e) {
-            throw new StorageException("Failed to save deck: " + e.getMessage());
+            throw new StorageException("Could not save deck: " + e.getMessage());
         }
     }
 
@@ -45,12 +33,15 @@ public class StorageManager {
             return new ArrayList<>();
         }
 
-        try (Reader reader = new FileReader(file)) {
-            Type deckListType = new TypeToken<ArrayList<Deck>>(){}.getType();
-            List<Deck> decks = gson.fromJson(reader, deckListType);
-            return decks != null ? decks : new ArrayList<>();
+        try (FileReader reader = new FileReader(file)) {
+            Deck[] decks = gson.fromJson(reader, Deck[].class);
+            if (decks != null) {
+                return List.of(decks);
+            } else {
+                return new ArrayList<>();
+            }
         } catch (IOException e) {
-            throw new StorageException("Failed to load decks: " + e.getMessage());
+            throw new StorageException("Could not load decks: " + e.getMessage());
         }
     }
 }

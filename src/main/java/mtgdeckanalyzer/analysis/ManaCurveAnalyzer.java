@@ -32,16 +32,16 @@ public class ManaCurveAnalyzer {
     }
     
     public String getManaCurveString(Map<Integer, Integer> manaCurve) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder manaCurveString = new StringBuilder();
         
         for (int i = 0; i <= 7; i++) {
             if (i == 7) {
-                sb.append("7+ CMC: ").append(manaCurve.get(i)).append("\n");
+                manaCurveString.append("7+ CMC: ").append(manaCurve.get(i)).append("\n");
             } else {
-                sb.append(i).append(" CMC: ").append(manaCurve.get(i)).append("\n");
+                manaCurveString.append(i).append(" CMC: ").append(manaCurve.get(i)).append("\n");
             }
         }
         
-        return sb.toString();
+        return manaCurveString.toString();
     }
 }
