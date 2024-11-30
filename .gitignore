@@ -1,4 +1,4 @@
-saved_decks/
+saved_decks.json
 target/
 *.jar
 *.war

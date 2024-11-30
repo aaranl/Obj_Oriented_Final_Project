@@ -110,10 +110,10 @@ public class MainUI extends JFrame {
                 deck.getCards().forEach(card -> 
                     displayText.append("- ").append(card.getName()).append(" (").append(card.getManaCost()).append(") [").append(card.getType().replace("—", "-")).append("]\n"));
                 ManaCurveAnalyzer analyzer = new ManaCurveAnalyzer();
-                displayText.append("\n=========Mana Curve Analysis=========n");
+                displayText.append("\n=========Mana Curve Analysis=========\n");
                 displayText.append("Mana Curve:\n").append(analyzer.getManaCurveString(analyzer.analyzeDeck(deck)));
                 ColorDistributionAnalyzer colorAnalyzer = new ColorDistributionAnalyzer();
-                displayText.append("\n=========Color Distribution Analysis=========n");
+                displayText.append("\n=========Color Distribution Analysis=========\n");
                 displayText.append("Color Distribution:\n").append(colorAnalyzer.getColorDistributionString(colorAnalyzer.analyzeColorDistribution(deck)));
                 displayText.append("\n=================\n\n");
             }
