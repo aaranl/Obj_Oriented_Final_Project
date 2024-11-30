@@ -1,0 +1,6 @@
+saved_decks/
+target/
+*.jar
+*.war
+*.ear
+*.class
