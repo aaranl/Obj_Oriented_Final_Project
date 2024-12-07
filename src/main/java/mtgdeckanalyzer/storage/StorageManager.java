@@ -28,7 +28,7 @@ public class StorageManager {
         }
     }
     public void saveDeck(Deck deck) throws StorageException {
-        List<Deck> existingDecks = loadDecks();
+        List<Deck> existingDecks = new ArrayList<>(loadDecks());
         existingDecks.add(deck);
         try (Writer writer = new FileWriter(DECKS_FILE)) {
             gson.toJson(existingDecks, writer);
